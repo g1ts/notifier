@@ -9,6 +9,12 @@ timeout=10
 
 source ./mail
 
+cache_dir="cache"
+
+if ! [ -e $cache_dir ] ; then
+        mkdir $cache_dir
+fi
+
 title=$1
 if [ -z $title ] ; then title='Напоминание'; fi
 text=$2
@@ -27,7 +33,7 @@ else
     enc="ru"
 fi
 
-voice_file="./cache/$md5.mp3"
+voice_file="$cache_dir/$md5.mp3"
 echo "voice_file: $voice_file"
 
 if ! [ -f $voice_file ] ; then
